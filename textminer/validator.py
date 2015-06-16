@@ -67,12 +67,20 @@ def words(test, count=0):
                 return False
 
 
-def phone_numbers(test):
-    pass
+def phone_number(test):
+    if len(re.findall(r"[\d]", test)) == 10:
+        return True
+    else:
+        return False
 
 
 def money(test):
-    pass
+    if len(test) < 2:
+        return False
+    if re.fullmatch(r"\$.*\.\d{1}|\$.*\.\d{3}|\${2}\d.*|\$\d*,\d{1,2}|\d+", test):
+        return False
+    else:
+        return True
 
 
 def zipcode(test):

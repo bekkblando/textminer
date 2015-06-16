@@ -84,8 +84,14 @@ def money(test):
 
 
 def zipcode(test):
-    pass
+    if len(re.findall(r"[\d]", test)) == 5 or len(re.findall(r"[\d]", test)) == 9:
+        return True
+    else:
+        return False
 
 
 def date(test):
-    pass
+    if len(re.findall(r"\d.*/\d.*/\d.*|\d.*-\d.*-\d.*", test)):
+        return True
+    else:
+        return False

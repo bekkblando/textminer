@@ -7,11 +7,44 @@ def words(test):
 
 
 def date(test):
-    pass
+    if len(re.findall(r"\d.*/\d.*/\d.*|\d.*-\d.*-\d.*", test)):
+        if len(re.findall(r"[/]", test)) == 2:
+            date = re.findall(r"\d*/\d*/\d*", test)
+            print(date)
+            month = ''.join(re.findall(r"^\d{1,2}", test))
+            print(month)
+            day = re.findall(r"/\d{1,2}.", test)
+            day = ''.join(day)[1:-1]
+            year = ''.join(re.findall(r"/\d{4}", test))
+            year = year[1:]
+            return {"month": int(month), "day": int(day), "year": int(year)}
+        if len(re.findall(r"[-]", test)) == 2:
+            date = ''.join(re.findall(r"\d*-\d*-\d*", test))
 
+            print(date)
+
+            month = ''.join(re.findall(r"-\d{1,2}-", test))
+            month = month[1:-1]
+
+            day = date[8:]
+
+            year = ''.join(re.findall(r"\d{4}", test))
+
+            return {"month": int(month), "day": int(day), "year": int(year)}
+    else:
+        return None
 
 def zipcode(test):
-    pass
+    if len(re.findall(r"[\d]", test)) == 9 or len(re.findall(r"[\d]", test)) == 5:
+        cleantext = ''.join((re.findall(r"[\d]", test)))
+        print(cleantext)
+        zip = re.findall(r"^\d{5}", cleantext)
+        number = cleantext[5:]
+        if number == '':
+            number = None
+        else:
+            number = ''.join(number)
+        return {"zip": ''.join(zip), "plus4": number}
 
 
 def money(test):

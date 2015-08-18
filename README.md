@@ -1,3 +1,4 @@
+Learned how to create and use Regular Expressions
 # Text Miner
 
 ## Description
